@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1 class="mb-5 text-center" style="color: beige; font-family: 'Montserrat'; margin-top: 7vh;">{{ question.question_text }}</h1>
+
+<ul class="list-group mb-5">
+    {% for choice in question.choice_set.all %}
+    <li class="list-group-item" style="background: #272727; color: beige; border-color: beige; padding: 14px;">
+        {{ choice.choice_text }} <span class="badge badge-success float-right">{{ choice.votes }}
+            vote{{ choice.votes | pluralize }}</span>
+    </li>
+    {% endfor %}
+</ul>
+<div class="flex-parent jc-center">
+    <a href="{% url 'polls:index' %}"><button class="button-29-gray margin-right" role="button">Back to Polls</button></a>
+    <a href="{% url 'polls:detail' question.id %}"><button class="button-29-dark" role="button">Vote again?</button></a>
+</div>
+{% endblock %}
